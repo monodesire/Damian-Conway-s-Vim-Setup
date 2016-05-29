@@ -43,8 +43,11 @@ function! HLNext ()
     call HLNextOff()
 
     " Add the new highlighting...
-    let target_pat = '\c\%#\%('.@/.'\)'
-    let g:HLNext_matchnum = matchadd('HLNext', target_pat)
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('ErrorMsg', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(0.1 * 1000) . 'm'
+    redraw
 endfunction
 
 " Clear previous highlighting (if any)...
